@@ -16,11 +16,14 @@ const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbylMPLzqSeP7o
 })();
 
 /* ── Waitlist form ── */
-async function handleJoin() {
+// Enable confirm button only when required checkbox is ticked
+document.getElementById('consent-launch').addEventListener('change', function () {
+  document.getElementById('confirm-btn').disabled = !this.checked;
+});
+
+function openModal() {
   const input  = document.getElementById('email-input');
-  const btn    = document.getElementById('join-btn');
   const errMsg = document.getElementById('error-msg');
-  if (!input || !btn || !errMsg) return;
   const email  = input.value.trim();
 
   const valid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
@@ -32,14 +35,33 @@ async function handleJoin() {
     return;
   }
 
-  btn.disabled = true;
-  btn.textContent = 'Joining...';
+  document.getElementById('consent-launch').checked    = false;
+  document.getElementById('consent-marketing').checked = false;
+  document.getElementById('confirm-btn').disabled = true;
+  document.getElementById('privacy-modal').classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeModal() {
+  document.getElementById('privacy-modal').classList.remove('active');
+  document.body.style.overflow = '';
+}
+
+async function confirmConsent() {
+  const email      = document.getElementById('email-input').value.trim();
+  const marketing  = document.getElementById('consent-marketing').checked;
+  const confirmBtn = document.getElementById('confirm-btn');
+
+  confirmBtn.disabled = true;
+  confirmBtn.textContent = 'Joining...';
 
   try {
     const params = new URLSearchParams({
-      email: email,
-      timestamp: new Date().toISOString(),
-      source: document.referrer || 'direct'
+      email:             email,
+      timestamp:         new Date().toISOString(),
+      source:            document.referrer || 'direct',
+      consent_launch:    'true',
+      consent_marketing: marketing ? 'true' : 'false'
     });
     await fetch(GOOGLE_SCRIPT_URL + '?' + params.toString(), {
       method: 'GET',
@@ -49,13 +71,17 @@ async function handleJoin() {
     console.warn('Submission note:', e);
   }
 
+  closeModal();
   document.getElementById('form-area').style.display = 'none';
   const success = document.getElementById('success-area');
-  if (success) success.style.display = 'flex';
+  success.style.display = 'flex';
 
   const counter = document.getElementById('counter');
-  if (counter) {
-    const n = parseInt(counter.textContent.replace(/,/g, '')) + 1;
-    counter.textContent = n.toLocaleString();
-  }
+  const n = parseInt(counter.textContent.replace(/,/g, '')) + 1;
+  counter.textContent = n.toLocaleString();
 }
+
+// Close modal if user clicks outside it
+document.getElementById('privacy-modal').addEventListener('click', function(e) {
+  if (e.target === this) closeModal();
+});
