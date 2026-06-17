@@ -21,6 +21,7 @@ body {
   font-family: var(--sans);
   min-height: 100vh;
   overflow-x: hidden;
+  position: relative;
 }
 
 body::before {
@@ -132,6 +133,7 @@ main {
   animation: fadeUp .7s .2s ease both;
   position: relative;
   overflow: hidden;
+  z-index: 2;
 }
 
 .card::before {
@@ -196,7 +198,7 @@ main {
 
 .btn:hover  { background: var(--accent-light); transform: translateY(-1px); box-shadow: 0 6px 24px rgba(0,102,204,.45); }
 .btn:active { transform: translateY(0); box-shadow: none; }
-.btn:disabled { opacity: .6; cursor: not-allowed; transform: none; }
+.btn:disabled { opacity: .6; cursor: not-allowed; transform: none; box-shadow: none; }
 
 .privacy-note {
   margin-top: 14px;
@@ -208,7 +210,7 @@ main {
 }
 
 .error-msg {
-  display: none;
+  display: block;
   margin-top: 10px;
   font-family: var(--mono);
   font-size: 11px;
@@ -217,7 +219,7 @@ main {
 }
 
 .success-msg {
-  display: none;
+  display: flex;
   flex-direction: column;
   align-items: center;
   gap: 12px;
@@ -237,7 +239,7 @@ main {
 
 @keyframes pop { from { transform: scale(0); } to { transform: scale(1); } }
 
-.success-msg h3 { font-size: 1.2rem; font-weight: 700; }
+.success-msg h3 { font-size: 1.2rem; font-weight: 700; color: var(--text); }
 .success-msg p  { font-size: .9rem; color: var(--muted); font-family: var(--mono); }
 
 .stats {
@@ -300,6 +302,7 @@ footer {
   font-size: .7rem;
   color: var(--muted);
   letter-spacing: .08em;
+  margin-top: auto;
 }
 
 @keyframes fadeUp {
@@ -316,7 +319,7 @@ footer {
 
 /* ══ MODAL ══ */
 .modal-overlay {
-  display: none;
+  display: flex;
   position: fixed;
   inset: 0;
   background: rgba(0,0,0,.75);
@@ -326,8 +329,6 @@ footer {
   justify-content: center;
   padding: 20px;
 }
-
-.modal-overlay.active { display: flex; }
 
 .modal {
   background: #0d1828;
@@ -356,6 +357,7 @@ footer {
   font-size: 1.1rem;
   font-weight: 800;
   margin-bottom: 6px;
+  color: var(--text);
 }
 
 .modal-body .modal-sub {
@@ -378,7 +380,7 @@ footer {
   transition: border-color .2s;
 }
 
-.consent-item:has(input:checked) {
+.consent-item.checked {
   border-color: rgba(0,102,204,.4);
   background: rgba(0,102,204,.08);
 }
@@ -450,7 +452,7 @@ footer {
   transition: background .15s, transform .15s, box-shadow .15s;
 }
 
-.btn-confirm:hover { background: var(--accent-light); transform: translateY(-1px); box-shadow: 0 6px 20px rgba(0,102,204,.4); }
+.btn-confirm:hover:not(:disabled) { background: var(--accent-light); transform: translateY(-1px); box-shadow: 0 6px 20px rgba(0,102,204,.4); }
 .btn-confirm:disabled { opacity: .4; cursor: not-allowed; transform: none; box-shadow: none; }
 
 .modal-footer {

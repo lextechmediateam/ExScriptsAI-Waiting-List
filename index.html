@@ -1,116 +1,17 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>ExScriptsAI — Join the Waitlist</title>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;600;800&display=swap" rel="stylesheet"/>
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
-<!-- ══ PRIVACY MODAL ══ -->
-<div class="modal-overlay" id="privacy-modal">
-  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
-    <div class="modal-top-bar"></div>
-    <div class="modal-body">
-
-      <h2 id="modal-title">Before we add you to the waitlist</h2>
-      <p class="modal-sub">Please confirm your preferences below to continue.</p>
-
-      <div class="consent-item">
-        <input type="checkbox" id="consent-launch" />
-        <label for="consent-launch">
-          I agree to receive a launch notification email from ExScripts / LexTech Ecosystem Limited when the product becomes available.
-          <span class="tag tag-required">Required</span>
-        </label>
-      </div>
-
-      <div class="consent-item">
-        <input type="checkbox" id="consent-marketing" />
-        <label for="consent-marketing">
-          I agree to receive product updates and marketing communications about ExScripts, including feature announcements, early-access offers, and pricing information.
-          <span class="tag tag-optional">Optional</span>
-        </label>
-      </div>
-
-      <div class="modal-actions">
-        <button class="btn-ghost" onclick="closeModal()">No thanks</button>
-        <button class="btn-confirm" id="confirm-btn" onclick="confirmConsent()" disabled>Confirm &amp; Join Waitlist</button>
-      </div>
-
-      <div class="modal-footer">
-        You can unsubscribe at any time &nbsp;&middot;&nbsp;
-        <a href="mailto:privacy@lextechgroup.com">privacy@lextechgroup.com</a>
-      </div>
-
-    </div>
-  </div>
-</div>
-<!-- ══ END MODAL ══ -->
-<div class="orb orb-1"></div>
-<div class="orb orb-2"></div>
-
-<main>
-
-  <div class="badge">Early Access · Limited Spots</div>
-
-  <div class="hero">
-    <h1>
-      <span class="line1">Transcribe in Seconds with</span>
-      <span class="brand">ExScriptsAI</span>
-    </h1>
-    <p>
-      Accurate, lightning-fast AI transcription built for professionals.
-      Join the waitlist and be first to experience the future of audio-to-text.
-    </p>
-  </div>
-
-  <div class="card">
-    <div id="form-area">
-      <label class="form-label" for="email-input">Your Email</label>
-      <div class="input-row">
-        <input type="email" id="email-input" placeholder="you@example.com" autocomplete="email" required />
-        <button class="btn" id="join-btn" onclick="openModal()">Join Waitlist</button>
-      </div>
-      <p class="error-msg" id="error-msg">Please enter a valid email address.</p>
-      <p class="privacy-note">No spam. Unsubscribe anytime. Your data stays private.</p>
-    </div>
-
-    <div class="success-msg" id="success-area">
-      <div class="check">&#10003;</div>
-      <h3>You're on the list!</h3>
-      <p>We'll notify you the moment ExScriptsAI launches.</p>
-    </div>
-  </div>
-
-  <div class="stats">
-    <div class="stat">
-      <div class="num" id="counter">0</div>
-      <div class="lbl">Signed Up</div>
-    </div>
-    <div class="stat">
-      <div class="num">Q3 '26</div>
-      <div class="lbl">Target Launch</div>
-    </div>
-    <div class="stat">
-      <div class="num">Free</div>
-      <div class="lbl">Early Access Tier</div>
-    </div>
-  </div>
-
-  <div class="features">
-    <div class="feat"><span class="feat-dot"></span>99%+ Accuracy</div>
-    <div class="feat"><span class="feat-dot"></span>Multi-language support</div>
-    <div class="feat"><span class="feat-dot"></span>Real-time transcription</div>
-    <div class="feat"><span class="feat-dot"></span>Speaker identification</div>
-    <div class="feat"><span class="feat-dot"></span>Export to any format</div>
-  </div>
-
-</main>
-
-<footer>&#169; 2025 ExScriptsAI &middot; All rights reserved</footer>
-
-<script src="script.js"></script>
-
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ExScripts — Join the Waitlist</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;600;800&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
 </html>
