@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 
 export default function App() {
   const [email, setEmail] = useState("");
@@ -8,8 +8,6 @@ export default function App() {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [showError, setShowError] = useState(false);
-
-
 
   const handleJoinClick = (e: React.MouseEvent) => {
     e.preventDefault();
@@ -147,7 +145,8 @@ export default function App() {
           </h1>
           <p>
             Accurate, lightning-fast AI transcription built for professionals.
-            Join others on our waitlist and be first to experience the future of audio-to-text.
+            Join others on our waitlist and be first to experience the future of
+            audio-to-text.
           </p>
         </div>
 
